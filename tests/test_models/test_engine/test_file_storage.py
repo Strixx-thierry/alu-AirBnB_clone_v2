@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 """ Module for testing file storage"""
 import unittest
+import os
 from models.base_model import BaseModel
 from models import storage
 import os
+import unittest.mock
+from unittest import skipIf
 
 
 class test_fileStorage(unittest.TestCase):
@@ -24,10 +27,13 @@ class test_fileStorage(unittest.TestCase):
         except:
             pass
 
+    # Example of using skipIf - this test only runs with file storage
+    @skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "Not for DB storage")
     def test_obj_list_empty(self):
         """ __objects is initially empty """
         self.assertEqual(len(storage.all()), 0)
 
+    # This test runs with both storage types
     def test_new(self):
         """ New object is correctly added to __objects """
         new = BaseModel()
