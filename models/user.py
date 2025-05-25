@@ -25,3 +25,12 @@ class User(BaseModel, Base):
                           backref="user")
     reviews = relationship("Review", cascade='all, delete, delete-orphan',
                            backref="user")
+    
+    def __init__(self, *args, **kwargs):
+        """Initialize User instance with default empty string attributes"""
+        super().__init__(*args, **kwargs)
+        if not kwargs:
+            self.email = ""
+            self.password = ""
+            self.first_name = ""
+            self.last_name = ""
