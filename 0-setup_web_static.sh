@@ -6,7 +6,7 @@ sudo apt-get -y install nginx
 
 # create folders
 sudo mkdir -p /data/web_static/releases/test /data/web_static/shared
-#create a fake html file
+#create an html file
 echo "This is a test" | sudo tee /data/web_static/releases/test/index.html
 # create symbolic link
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
